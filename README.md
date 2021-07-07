@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# react-refreshtoken-sample
+
+A sample React project to test [JWToken](https://jwt.io) authentication using [Axios](https://www.npmjs.com/package/axios) as the main workhorse for the requests and using its **[interceptor](https://www.npmjs.com/package/axios#interceptors)** feature to implement refresh token. This project only includes the client-side application.
+
+I have made a similar project before but using `fetch` and manually implementing the interceptor part to handle refresh token.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
