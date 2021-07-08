@@ -44,7 +44,7 @@ Authorization: Bearer <YOUR-ACCESS-TOKEN>
 
 If the access token expires, designated by receiving 401 status, the code will automatically try to get a new token using the refresh token. We will send the refresh token in the post data and use the expired access token in the Authorization header.
 
-If successful, we will update the stored tokens and send the original request now using the updated tokens. If not successful, we will just show the error to the user.
+If successful, we will update the stored tokens and send the original request now using the updated tokens. If not successful, we will just show the original error to the user.
 
 
 ## Available Scripts
