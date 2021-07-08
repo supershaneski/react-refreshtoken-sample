@@ -1,10 +1,51 @@
 # react-refreshtoken-sample
 
-A sample React project to test [JWToken](https://jwt.io) authentication using [Axios](https://www.npmjs.com/package/axios) as the main workhorse for the requests and using its **[interceptor](https://www.npmjs.com/package/axios#interceptors)** feature to implement refresh token. This project only includes the client-side application.
+A sample React project to demonstrate [JWToken](https://jwt.io) authentication using [Axios](https://www.npmjs.com/package/axios) as the main workhorse for the requests and using its **[interceptor](https://www.npmjs.com/package/axios#interceptors)** feature to implement refresh token. This project only includes the client-side application.
 
 I have made a similar project before but using `fetch` and manually implementing the interceptor part to handle refresh token.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Description
+
+**Note: This is just to demonstrate the operation flow in a way that a beginner might understand how things work.**
+
+The first phase involves user authentication using an *apikey* in the header logging in.
+
+```
+Accept: application/json
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+x-api-key: <YOUR-API-KEY>
+...
+```
+
+If successful, the server will return the tokens - main *access token* and a *refresh token* for when the access token expires.
+
+```
+{
+    token: <ACESS-TOKEN>,
+    rtoken: <REFRESH-TOKEN>,
+    ...
+}
+```
+
+Upon receipt, the tokens will be stored in *localStorage*.
+There are other ways to store the tokens received and some warns about using localStorage.
+However, for the purpose of this sample project, we will use localStorage for simplicity.
+
+After login is successfully, we can now use the access token in the authorization header every time we request something from the server.
+
+```
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer <YOUR-ACCESS-TOKEN>
+...
+````
+
+If the access token expires, designated by receiving 401 status, the code will automatically try to get a new token using the refresh token. We will send the refresh token in the post data and use the expired access token in the Authorization header.
+
+If successful, we will update the stored tokens and send the original request now using the updated tokens. If not successful, we will just show the error to the user.
+
 
 ## Available Scripts
 
